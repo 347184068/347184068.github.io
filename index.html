@@ -303,103 +303,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Hibernate学习笔记"><a href="#Hibernate学习笔记" class="headerlink" title="Hibernate学习笔记 "></a>Hibernate学习笔记 <br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-hibernate实体类编写规则"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate实体类编写规则" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate实体类编写规则"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate实体类编写规则</h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>实体类里面的属性是私有的</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>私有属性使用公开的set和get方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>要求实体类有属性作为唯一值</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>实体类属性建议不使用基本数据类型，建议使用包装类。具体应该考虑null值是否有意义，比如一个学生的分数为0，和他没有参加考试，没有参加考试可将值赋值为null，而分数为0，就是属性值，因此只有int的包装类Integer才能表示null值</strong><br><br></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate主键生成策略"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate主键生成策略" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate主键生成策略"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate主键生成策略<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>hibernate要求实体类有一个唯一属性对应表的主键，主键的自动生成有不同策略</strong><br><code></code></p>
-</blockquote>
-<pre><code>&lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>class属性中有多个值</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>native：表示根据本地的数据库来选择主键的自动生长策略</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>uuid：hibernate会自动生成一个uuid作为主键，此时表里面的id类型应为String</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; <strong>常用的就是以上两类</strong><br></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate中实体类的三种状态"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate中实体类的三种状态" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate中实体类的三种状态"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate中实体类的三种状态<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>瞬时态：对象里面没有id值，对象与session没有关联。也叫自由态，只存在于内存中，而在数据库中没有相应数据。用new创建的对象，它没有持久化，没有处于Session中。</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>持久态：对象里面有id值，对象与session有关联。与session关联并且在数据库中有相应数据。已经持久化，加入到了Session缓存中。如通过hibernate语句保存的对象。</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>托管态：对象有id值，对象与session没有关系。持久化对象脱离了Session的对象。如Session缓存被清空的对象。<br>特点：已经持久化，但不在Session缓存中。</strong><br><br></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Hibernate的缓存"><a href="#nbsp-nbsp-nbsp-nbsp-Hibernate的缓存" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Hibernate的缓存"></a>&nbsp;&nbsp;&nbsp;&nbsp;Hibernate的缓存<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>Hibernate一级缓存</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>Hibernate的一级缓存默认打开</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>Hibernate的使用范围是session范围，从session创建到关闭</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>Hibernate的一级缓存中，存储数据必须持久态数据</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>Hibernate二级缓存</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>目前使用redis去替代</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>默认不打开，需要配置</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>二级缓存的范围是sessionFactory的范围</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>Hibernate一级缓存的执行过程</strong></p>
-<image src="http://ojx1jel9d.bkt.clouddn.com/Hibernate%288Y8OXJ_O%5D%7BL%7B%7B7W$_LEY5G.jpg" width="600px" height="200px">
-
-
-</image></blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate一级缓存特性"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate一级缓存特性" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate一级缓存特性"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate一级缓存特性<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>持久态自动更新数据库</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>原理图</strong></p>
-<image src="http://ojx1jel9d.bkt.clouddn.com/UC998MTE%29IL0HO6PA258@SM.jpg" width="600px" height="200px">
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp; <strong>当对象为持久态时，其实会存储到一级缓存和一个快照区，当修改后，会与修改之前的数据进行比较，只有修改的值与未修改前的值不同时才会进行数据库的修改，极大的提高了数据库操作的效率</strong></p>
-</image></blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate绑定session"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate绑定session" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate绑定session"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate绑定session<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>session类似于jdbc的connection，通过ThreadLocal可以进行绑定</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>Hibernate会实现session与本地线程进行绑定</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>获取与本地线程session</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>在Hibernate的核心配置文件中配置</strong><br><code></code></p>
-</blockquote>
-<pre><code>&lt;property name=&quot;hibernate.current_session_context_class&quot;&gt;thread&lt;/property&gt;
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>对用sessionFactory的getCurrentSession()方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>与本地线程绑定的session，关闭session资源会报错，那是因为它与线程绑定了，线程结束，那么session结束</strong></p>
-</blockquote>
-<h1 id="Hibernate的查询对象的简单使用"><a href="#Hibernate的查询对象的简单使用" class="headerlink" title="Hibernate的查询对象的简单使用"></a>Hibernate的查询对象的简单使用<br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-Query对象"><a href="#nbsp-nbsp-nbsp-nbsp-Query对象" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Query对象"></a>&nbsp;&nbsp;&nbsp;&nbsp;Query对象<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>使用query对象不需要写sql语句，但是要写hql语句</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>sql语句是操作表和表字段，hql语句是操作实体类和属性</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>查询所有的hql语句 ‘from 实体类名称’</strong><br><code></code></p>
-</blockquote>
-<pre><code>Query query = session.createQuery(&quot;from User&quot;);
-List&lt;User&gt; list = query.list();
-for (User user : list) {
-    System.out.println(user);
-}
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Criteria对象"><a href="#nbsp-nbsp-nbsp-nbsp-Criteria对象" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Criteria对象"></a>&nbsp;&nbsp;&nbsp;&nbsp;Criteria对象<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>使用这个对象进行查询操作，不需要写语句，直接调用里面的API</strong><br><code></code></p>
-</blockquote>
-<pre><code>Criteria criteria = session.createCriteria(User.class);
-List&lt;User&gt; list = criteria.list();
-for (User user : list) {
-    System.out.println(user);
-}
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-SQLQuery"><a href="#nbsp-nbsp-nbsp-nbsp-SQLQuery" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;SQLQuery"></a>&nbsp;&nbsp;&nbsp;&nbsp;SQLQuery<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>普通的sql语句查询</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>应该注意这个时候默认返回的Lsit集合中，每一部分是数组</strong><br><code></code></p>
-</blockquote>
-<pre><code>SQLQuery sqlQuery = session.createSQLQuery(&quot;select * from t_user&quot;);
-List&lt;Object []&gt; list = sqlQuery.list();
-for (Object[] objects : list) {
-    System.out.println(Arrays.toString(objects));
-}
-</code></pre><p></p>
-<blockquote>
-<p> &nbsp;&nbsp;&nbsp;&nbsp;3. <strong>设置返回list对象每一部分的类型</strong><br><code></code></p>
-</blockquote>
-<pre><code>SQLQuery sqlQuery = session.createSQLQuery(&quot;select * from t_user&quot;);
-//设置数据返回时封装到那一个实体类
-sqlQuery.addEntity(User.class);
-List&lt;Object []&gt; list = sqlQuery.list();
-for (Object[] objects : list) {
-  System.out.println(Arrays.toString(objects));
-}
-</code></pre><p></p>
-
+              <p><Excerpt in index | 首页摘要><br>Hibernate学习笔记
+          
       
     </div>
     
@@ -412,6 +317,10 @@ for (Object[] objects : list) {
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/02/13/Hibernate学习笔记（二）/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -458,208 +367,8 @@ for (Object[] objects : list) {
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Hibernate入门"><a href="#Hibernate入门" class="headerlink" title="Hibernate入门"></a>Hibernate入门<br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-搭建hibernate环境"><a href="#nbsp-nbsp-nbsp-nbsp-搭建hibernate环境" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;搭建hibernate环境"></a>&nbsp;&nbsp;&nbsp;&nbsp;搭建hibernate环境</h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;出于方便的考虑，建立一个maven项目，这样就不用考虑jar包问题，只需要将相应的maven坐标找到就可以了，以下是我演示项目pom.xml里的坐标<br><code></code></p>
-</blockquote>
-<pre><code>&lt;dependency&gt;
-   &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-   &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
-   &lt;version&gt;5.1.0.Final&lt;/version&gt;
- &lt;/dependency&gt;
- &lt;dependency&gt;
-   &lt;groupId&gt;log4j&lt;/groupId&gt;
-   &lt;artifactId&gt;log4j&lt;/artifactId&gt;
-   &lt;version&gt;1.2.17&lt;/version&gt;
- &lt;/dependency&gt;
- &lt;dependency&gt;
-   &lt;groupId&gt;mysql&lt;/groupId&gt;
-   &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-   &lt;version&gt;5.1.34&lt;/version&gt;
- &lt;/dependency&gt;
- &lt;dependency&gt;
-   &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-   &lt;artifactId&gt;hibernate-annotations&lt;/artifactId&gt;
-   &lt;version&gt;3.5.6-Final&lt;/version&gt;
- &lt;/dependency&gt;
- &lt;dependency&gt;
-   &lt;groupId&gt;junit&lt;/groupId&gt;
-   &lt;artifactId&gt;junit&lt;/artifactId&gt;
-   &lt;version&gt;3.8.1&lt;/version&gt;
-   &lt;scope&gt;test&lt;/scope&gt;
- &lt;/dependency&gt;
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-创建实体类"><a href="#nbsp-nbsp-nbsp-nbsp-创建实体类" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;创建实体类"></a>&nbsp;&nbsp;&nbsp;&nbsp;创建实体类<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;这时应当注意的是，在hibernate中要求实体类有一个属性唯一的值，也就是数据库中的主键，因为在hibernate中可以自动生成表，因此要写这么一个属性。<br><br><code></code></p>
-</blockquote>
-<pre><code>public class User {
-  private int uid;
-  private String userName;
-  private String password;
-  private String address;
-}
-</code></pre><p><br>以上是我的User类中的属性。<br></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-配置实体类和数据库表的对应关系"><a href="#nbsp-nbsp-nbsp-nbsp-配置实体类和数据库表的对应关系" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;配置实体类和数据库表的对应关系"></a>&nbsp;&nbsp;&nbsp;&nbsp;配置实体类和数据库表的对应关系<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(1)首先创建一个xml格式的配置文件。映射配置文件名称和位置没有固定要求。建议：在实体类所在的包里面创建，实体类名称为XXXX.hbm.xml</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(2)应当配置相应的xml约束，一般是dtd格式当然还有schema格式。一般在网上都会搜的到配置文件，直接借过来用！！<br><br><br>以下是我的映射文件（里面有解释）<br><code></code></p>
-</blockquote>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE hibernate-mapping PUBLIC &quot;-//Hibernate/Hibernate Mapping DTD 5.0//EN&quot;&quot;http://www.hibernate.org/dtd/hibernate-mapping-5.0.dtd&quot;&gt; 
-&lt;hibernate-mapping&gt;
-  &lt;!--第一步
-    首先配置类和表对应的class标签
-    name属性：实体类全路径
-    table属性：对应数据库表的名字
-  --&gt;
- &lt;class name=&quot;entity.User&quot; table=&quot;t_user&quot;&gt;
-    &lt;!--第二步
-        配置实体类id和表对应的id，也就是所说的表的主键。
-        hibernate要求实体类有一个属性唯一值，即同时要求此id作为表字段的主键
-        name属性：实体类里面id的属性名称
-        column属性：生成表字段名称（可以不填，那么在生成表时会以name值作为表字段）
-     --&gt;
-    &lt;id name=&quot;uid&quot; column=&quot;uid&quot;&gt;
-        &lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;
-    &lt;/id&gt;
-    &lt;!--第三步
-        配置其他属性和表字段对应
-        name属性：实体类里面id的属性名称
-        column属性：生成表字段名称（可以不填，那么在生成表时会以name值作为表字段）
-     --&gt;
-    &lt;property name=&quot;userName&quot; column=&quot;userName&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;password&quot; column=&quot;password&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;address&quot; column=&quot;address&quot;&gt;&lt;/property&gt;
-  &lt;/class&gt;
-&lt;/hibernate-mapping&gt;
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-创建hibernate核心的配置文件"><a href="#nbsp-nbsp-nbsp-nbsp-创建hibernate核心的配置文件" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;创建hibernate核心的配置文件"></a>&nbsp;&nbsp;&nbsp;&nbsp;创建hibernate核心的配置文件<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(1)首先创建一个xml格式的配置文件。注意的是，核心配置文件的名称和位置是固定的，但在spring中映射配置文件名称和位置没有固定要求（请参照以后的spring学习笔记<br><strong>&nbsp;&nbsp;&nbsp;&nbsp;位置：必须在src下</strong><br><strong>&nbsp;&nbsp;&nbsp;&nbsp;名称：hibernate.cfg.xml</strong> </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(2)hibernate操作过程中，只会加载核心配置文件，其他配置文件不会加载</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(3)配置映射文件信息时,用\<mapping\>标签,resource应当写上映射文件的全路径，因为都在src包下，只需写不同的包名+文件名在这即为：entity/User.hbm.xml<br><code></code></mapping\></p>
-</blockquote>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE hibernate-configuration PUBLIC&quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;&quot;
-   http://hibernate.sourceforge.net/hibernate- configuration-3.0.dtd&quot;&gt;
-&lt;hibernate-configuration&gt;
-    &lt;session-factory&gt;
-      &lt;!-- 配置数据库信息 --&gt;
-      &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver &lt;/property&gt;
-      &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/webtest&lt;/property&gt;
-      &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;
-      &lt;property name=&quot;hibernate.connection.password&quot;&gt;123&lt;/property&gt;
-      &lt;!-- 配置hibernate信息 --&gt;
-      &lt;!--输出底层sql语句--&gt;
-      &lt;property name=&quot;hibernate.show_sql&quot;&gt;true&lt;/property&gt;
-      &lt;!--输出底层sql的格式语句--&gt;
-      &lt;property name=&quot;hibernate.format_sql&quot;&gt;true&lt;/property&gt;
-      &lt;!-- 配置自动创建表  update的意思是没表创建，有表就更新--&gt;
-      &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
-      &lt;!-- 注意！ 这里配置的是数据库的方言，比如在mysql中的分页操作用到limit关键字，需要将mysql方言做如下配置  --&gt;
-      &lt;property name=&quot;hibernate.dialect&quot;&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
-      &lt;!-- 配置映射文件信息 --&gt;
-      &lt;mapping resource=&quot;entity/User.hbm.xml&quot;/&gt;
-    &lt;/session-factory&gt;
-&lt;/hibernate-configuration&gt;
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-实现基本操作"><a href="#nbsp-nbsp-nbsp-nbsp-实现基本操作" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;实现基本操作"></a>&nbsp;&nbsp;&nbsp;&nbsp;实现基本操作<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>加载核心配置文件</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>创建sessionFactory对象</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>使用sessionFactory创建session对象</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(4) <strong>开启事务</strong> </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(5) <strong>写出具体的操作CRUD</strong> </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(6) <strong>提交事务</strong> </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;(7) <strong>关闭资源</strong> </p>
-</blockquote>
-<p>如果在数据库中观察到了表的创建。表中有数据，说明配置成功。<br><code></code></p>
-<pre><code>  public class Demo1 {
-    @Test
-    public void testAdd(){
-        //加载核心配置文件
-        Configuration cfg = new Configuration();
-        cfg.configure();
-        //创建sessionFactory对象,在此过程中，根据映射关系在数据库中创建相应的表
-        SessionFactory sessionFactory = cfg.buildSessionFactory();
-        //使用sessionFactory创建session对象
-        Session session = sessionFactory.openSession();
-        // 开启事务
-        Transaction tx = session.beginTransaction();
-        //写出具体的操作CRUD
-        User user = new User();
-        user.setUserName(&quot;小王&quot;);
-        user.setAddress(&quot;sd&quot;);
-        user.setPassword(&quot;123&quot;);
-        session.save(user);
-        // 提交事务
-        tx.commit();
-        //关闭资源
-        session.close();
-        sessionFactory.close();
-    }
-}
-</code></pre><p></p>
-<h1 id="Hibernate配置文件详解"><a href="#Hibernate配置文件详解" class="headerlink" title="Hibernate配置文件详解"></a>Hibernate配置文件详解<br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-hibernate映射配置文件"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate映射配置文件" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate映射配置文件"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate映射配置文件<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>映射配置文件名称没有固定要求</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>映射配置文件中，标签name属性值写实体类相关内容</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>class标签name属性值为实体类全路径</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>id标签和property标签 name属性值为实体类属性名称</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>id标签和property标签，column属性可以忽略</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>不写值和name属性一样</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>property标签type属性，设置生成表字段类型，自动对应类型</strong> </p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate核心配置文件"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate核心配置文件" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate核心配置文件"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate核心配置文件<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>配置写位置要求在\<bibernate-configuration>\<session-factory>\</session-factory>\</bibernate-configuration>中</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>配置三部分要求</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>数据库部分必须</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>hibernate部分可选</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>映射文件必须</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>i配置文件名称和位置是固定的</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>位置，src下</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>名称，hibernate.cfg.xml</strong></p>
-</blockquote>
-<h1 id="Hibernate核心API"><a href="#Hibernate核心API" class="headerlink" title="Hibernate核心API"></a>Hibernate核心API<br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-Configuration"><a href="#nbsp-nbsp-nbsp-nbsp-Configuration" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Configuration"></a>&nbsp;&nbsp;&nbsp;&nbsp;Configuration<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>代码</strong><br><code></code></p>
-</blockquote>
-<pre><code>Configuration cfg = new Configuration();
-cfg.configure();
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>会到src下面找到名称为hibernate.cfg.xml配置文件，创建对象，把配置文件加载进去</strong></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-SessionFactory"><a href="#nbsp-nbsp-nbsp-nbsp-SessionFactory" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;SessionFactory"></a>&nbsp;&nbsp;&nbsp;&nbsp;SessionFactory<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>使用configuration对象创建sessionFactory对象</strong><br><code></code></p>
-</blockquote>
-<pre><code>SessionFactory sessionFactory = cfg.buildSessionFactory();
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>创建SessionFactory的过程中非常消耗资源</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>在hibernate中，建议一个项目只创建一个sessionFactory对象（创建一个工具类）</strong></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Session"><a href="#nbsp-nbsp-nbsp-nbsp-Session" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Session"></a>&nbsp;&nbsp;&nbsp;&nbsp;Session<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>session类似于jdbc中的connection</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>调用session对象里的不同方法进行CRUD</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>添加 save 方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>修改 update 方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>删除 delete 方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) <strong>根据id查询 get 方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>session对象是单线程对象</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>session对象不能共用，只能自己使用</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>property标签type属性，设置生成表字段类型，自动对应类型</strong> </p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Transaction"><a href="#nbsp-nbsp-nbsp-nbsp-Transaction" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Transaction"></a>&nbsp;&nbsp;&nbsp;&nbsp;Transaction<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>事务对象</strong><br><code></code></p>
-</blockquote>
-<pre><code>Transaction tx = session.beginTransaction();
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>事务提交和回滚</strong><br><code></code></p>
-</blockquote>
-<pre><code>tx.commit();
-tx.rollback();
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>事务特性(ACID)</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>原子性、一致性、隔离性、持久性</strong> </p>
-</blockquote>
-
+              <p><Excerpt in index | 首页摘要><br>Hibernate入门，搭建hibernate环境
+          
       
     </div>
     
@@ -672,6 +381,10 @@ tx.rollback();
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/02/13/Hibernate学习笔记（一）/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -718,7 +431,7 @@ tx.rollback();
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p><Excerpt in index | 首页摘要><br>+
+              <p><Excerpt in index | 首页摘要><br>给定一个n*n的矩阵，求该矩阵的k次幂，即P^k。
           
       
     </div>
@@ -734,7 +447,7 @@ tx.rollback();
 
       
         <p class="article-more-link">
-          <a href="/2017/02/13/矩阵快速幂的JAVA实现/#more">more >></a>
+          <a href="/2017/02/13/矩阵快速幂的JAVA实现/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
