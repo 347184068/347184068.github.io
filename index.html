@@ -718,44 +718,8 @@ tx.rollback();
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h1><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p><strong>给定一个n*n的矩阵，求该矩阵的k次幂，即P^k。</strong></p>
-<p><strong>如何快速的算出一个矩阵的N次幂呢，举个例子，比如A^19  =&gt; （A^16）*（A^2）*（A^1）显然采取这样的方式计算时因子数将是log(n)级别的(原来的因子数是n)，不仅这样，因子间也是存在某种联系的。<br>比如A^4能通过(A^2)*(A^2)得到，A^8又能通过(A^4)*(A^4)得到，这点也充分利用了现有的结果作为有利条件。<br>下面举个例子进行说明：现在要求A^156,而156(10)=10011100(2) 也就有A^156=&gt;(A^4)*(A^8)*(A^16)*(A^128)  考虑到因子间的联系，我们从二进制10011100中的最右端开始计算到最左端。</strong></p>
-<p>以下代码就是其实现方式：<br><code></code></p>
-<pre><code>public class MatrixMulti {
-
-    public static long[][] mut(int k,int n,long[][] A){
-        long [][] res = new long[n][n];
-        for(int i = 0 ; i &lt; res.length ;i++){
-            for(int j = 0 ; j&lt; res[i].length ;j++){
-                if(i==j){
-                    res[i][j] = 1;
-                }else{
-                    res[i][j] = 0;
-                }
-            }
-        }
-        while(k!=0){
-            if((k&amp;1)==1) res = f(res,A);
-            k&gt;&gt;=1;
-            A = f(A,A);
-        }
-        return res;
-    }
-    public static long[][] f(long[][] A,long[][] B){
-        long res[][] = new long[A.length][B.length];
-        for(int i = 0 ; i &lt; res.length ;i++){
-            for(int j = 0 ; j&lt; res[i].length ;j++){
-                for(int k = 0 ; k &lt; A[0].length ;k++){
-                    res[i][j] += A[i][k]*B[k][j];
-                }
-            }
-        }
-        return res;
-    }
-
-}
-</code></pre><p><br><strong>其中函数f(),是定义了矩阵的乘法运算，在矩阵中，单位矩阵就是相当于常数1，在函数mut（）中，最主要的就是while循环里的代码，运用了分治的思想，快速的计算矩阵的n次幂。好吧，矩阵快速幂的讲解就到这里吧。</strong> </p>
-
+              <p><Excerpt in index | 首页摘要><br>+
+          
       
     </div>
     
@@ -768,6 +732,10 @@ tx.rollback();
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/02/13/矩阵快速幂的JAVA实现/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
