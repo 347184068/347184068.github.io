@@ -14,19 +14,29 @@
 <meta name="author" content="Chillax" />
 
 
-    
-    
 
+<meta name="description" content="Hibernate入门&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;搭建hibernate环境
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;出于方便的考虑，建立一个maven项目，这样就不用考虑jar包问题，只需要将相应的maven坐标找到就可以了，以下是我演示项目pom.xml里的坐标
 
-<meta name="description" content="奋斗在人生路上的蚂蚁">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chillax的个人博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+&amp;lt;dependency&amp;gt;
+   &amp;lt;groupId&amp;gt;org.hibernate&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate学习笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/Hibernate学习笔记（一）/index.html">
 <meta property="og:site_name" content="Chillax的个人博客">
-<meta property="og:description" content="奋斗在人生路上的蚂蚁">
+<meta property="og:description" content="Hibernate入门&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;搭建hibernate环境
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;出于方便的考虑，建立一个maven项目，这样就不用考虑jar包问题，只需要将相应的maven坐标找到就可以了，以下是我演示项目pom.xml里的坐标
+
+&amp;lt;dependency&amp;gt;
+   &amp;lt;groupId&amp;gt;org.hibernate&amp;">
+<meta property="og:updated_time" content="2017-02-13T11:25:31.280Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chillax的个人博客">
-<meta name="twitter:description" content="奋斗在人生路上的蚂蚁">
+<meta name="twitter:title" content="Hibernate学习笔记（一）">
+<meta name="twitter:description" content="Hibernate入门&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;搭建hibernate环境
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;出于方便的考虑，建立一个maven项目，这样就不用考虑jar包问题，只需要将相应的maven坐标找到就可以了，以下是我演示项目pom.xml里的坐标
+
+&amp;lt;dependency&amp;gt;
+   &amp;lt;groupId&amp;gt;org.hibernate&amp;">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,13 +64,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Chillax的个人博客</title>
+<title>Hibernate学习笔记（一） | Chillax的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -69,8 +77,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -272,164 +280,7 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-Hibernate学习笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/02/13/Hibernate学习笔记（二）/" class="article-date">
-      <time datetime="2017-02-13T11:26:10.000Z" itemprop="datePublished">2017-02-13</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/13/Hibernate学习笔记（二）/">Hibernate学习笔记（二）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="Hibernate学习笔记"><a href="#Hibernate学习笔记" class="headerlink" title="Hibernate学习笔记 "></a>Hibernate学习笔记 <br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-hibernate实体类编写规则"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate实体类编写规则" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate实体类编写规则"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate实体类编写规则</h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>实体类里面的属性是私有的</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>私有属性使用公开的set和get方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>要求实体类有属性作为唯一值</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>实体类属性建议不使用基本数据类型，建议使用包装类。具体应该考虑null值是否有意义，比如一个学生的分数为0，和他没有参加考试，没有参加考试可将值赋值为null，而分数为0，就是属性值，因此只有int的包装类Integer才能表示null值</strong><br><br></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate主键生成策略"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate主键生成策略" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate主键生成策略"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate主键生成策略<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>hibernate要求实体类有一个唯一属性对应表的主键，主键的自动生成有不同策略</strong><br><code></code></p>
-</blockquote>
-<pre><code>&lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>class属性中有多个值</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>native：表示根据本地的数据库来选择主键的自动生长策略</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>uuid：hibernate会自动生成一个uuid作为主键，此时表里面的id类型应为String</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; <strong>常用的就是以上两类</strong><br></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate中实体类的三种状态"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate中实体类的三种状态" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate中实体类的三种状态"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate中实体类的三种状态<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>瞬时态：对象里面没有id值，对象与session没有关联。也叫自由态，只存在于内存中，而在数据库中没有相应数据。用new创建的对象，它没有持久化，没有处于Session中。</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>持久态：对象里面有id值，对象与session有关联。与session关联并且在数据库中有相应数据。已经持久化，加入到了Session缓存中。如通过hibernate语句保存的对象。</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>托管态：对象有id值，对象与session没有关系。持久化对象脱离了Session的对象。如Session缓存被清空的对象。<br>特点：已经持久化，但不在Session缓存中。</strong><br><br></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Hibernate的缓存"><a href="#nbsp-nbsp-nbsp-nbsp-Hibernate的缓存" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Hibernate的缓存"></a>&nbsp;&nbsp;&nbsp;&nbsp;Hibernate的缓存<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>Hibernate一级缓存</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>Hibernate的一级缓存默认打开</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>Hibernate的使用范围是session范围，从session创建到关闭</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>Hibernate的一级缓存中，存储数据必须持久态数据</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>Hibernate二级缓存</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>目前使用redis去替代</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>默认不打开，需要配置</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>二级缓存的范围是sessionFactory的范围</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>Hibernate一级缓存的执行过程</strong></p>
-<image src="http://ojx1jel9d.bkt.clouddn.com/Hibernate%288Y8OXJ_O%5D%7BL%7B%7B7W$_LEY5G.jpg" width="600px" height="200px">
-
-
-</image></blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate一级缓存特性"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate一级缓存特性" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate一级缓存特性"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate一级缓存特性<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>持久态自动更新数据库</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>原理图</strong></p>
-<image src="http://ojx1jel9d.bkt.clouddn.com/UC998MTE%29IL0HO6PA258@SM.jpg" width="600px" height="200px">
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp; <strong>当对象为持久态时，其实会存储到一级缓存和一个快照区，当修改后，会与修改之前的数据进行比较，只有修改的值与未修改前的值不同时才会进行数据库的修改，极大的提高了数据库操作的效率</strong></p>
-</image></blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate绑定session"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate绑定session" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate绑定session"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate绑定session<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>session类似于jdbc的connection，通过ThreadLocal可以进行绑定</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>Hibernate会实现session与本地线程进行绑定</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>获取与本地线程session</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>在Hibernate的核心配置文件中配置</strong><br><code></code></p>
-</blockquote>
-<pre><code>&lt;property name=&quot;hibernate.current_session_context_class&quot;&gt;thread&lt;/property&gt;
-</code></pre><p></p>
-<blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>对用sessionFactory的getCurrentSession()方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>与本地线程绑定的session，关闭session资源会报错，那是因为它与线程绑定了，线程结束，那么session结束</strong></p>
-</blockquote>
-<h1 id="Hibernate的查询对象的简单使用"><a href="#Hibernate的查询对象的简单使用" class="headerlink" title="Hibernate的查询对象的简单使用"></a>Hibernate的查询对象的简单使用<br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-Query对象"><a href="#nbsp-nbsp-nbsp-nbsp-Query对象" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Query对象"></a>&nbsp;&nbsp;&nbsp;&nbsp;Query对象<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>使用query对象不需要写sql语句，但是要写hql语句</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>sql语句是操作表和表字段，hql语句是操作实体类和属性</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>查询所有的hql语句 ‘from 实体类名称’</strong><br><code></code></p>
-</blockquote>
-<pre><code>Query query = session.createQuery(&quot;from User&quot;);
-List&lt;User&gt; list = query.list();
-for (User user : list) {
-    System.out.println(user);
-}
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Criteria对象"><a href="#nbsp-nbsp-nbsp-nbsp-Criteria对象" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Criteria对象"></a>&nbsp;&nbsp;&nbsp;&nbsp;Criteria对象<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>使用这个对象进行查询操作，不需要写语句，直接调用里面的API</strong><br><code></code></p>
-</blockquote>
-<pre><code>Criteria criteria = session.createCriteria(User.class);
-List&lt;User&gt; list = criteria.list();
-for (User user : list) {
-    System.out.println(user);
-}
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-SQLQuery"><a href="#nbsp-nbsp-nbsp-nbsp-SQLQuery" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;SQLQuery"></a>&nbsp;&nbsp;&nbsp;&nbsp;SQLQuery<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>普通的sql语句查询</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>应该注意这个时候默认返回的Lsit集合中，每一部分是数组</strong><br><code></code></p>
-</blockquote>
-<pre><code>SQLQuery sqlQuery = session.createSQLQuery(&quot;select * from t_user&quot;);
-List&lt;Object []&gt; list = sqlQuery.list();
-for (Object[] objects : list) {
-    System.out.println(Arrays.toString(objects));
-}
-</code></pre><p></p>
-<blockquote>
-<p> &nbsp;&nbsp;&nbsp;&nbsp;3. <strong>设置返回list对象每一部分的类型</strong><br><code></code></p>
-</blockquote>
-<pre><code>SQLQuery sqlQuery = session.createSQLQuery(&quot;select * from t_user&quot;);
-//设置数据返回时封装到那一个实体类
-sqlQuery.addEntity(User.class);
-List&lt;Object []&gt; list = sqlQuery.list();
-for (Object[] objects : list) {
-  System.out.println(Arrays.toString(objects));
-}
-</code></pre><p></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记，框架/">JAVA养成记，框架</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hibernate学习笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Hibernate学习笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/02/13/Hibernate学习笔记（一）/" class="article-date">
@@ -447,12 +298,23 @@ for (Object[] objects : list) {
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/13/Hibernate学习笔记（一）/">Hibernate学习笔记（一）</a>
+    <h1 class="article-title" itemprop="name">
+      Hibernate学习笔记（一）
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记，框架/">JAVA养成记，框架</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -663,119 +525,91 @@ tx.rollback();
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记，框架/">JAVA养成记，框架</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-矩阵快速幂的JAVA实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/02/13/矩阵快速幂的JAVA实现/" class="article-date">
-      <time datetime="2017-02-13T11:03:37.000Z" itemprop="datePublished">2017-02-13</time>
-</a>
-
-
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/02/13/Hibernate学习笔记（一）/">Hibernate学习笔记（一）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Chillax</a></p>
+        <p><span>发布时间:</span>2017-02-13, 19:11:31</p>
+        <p><span>最后更新:</span>2017-02-13, 19:25:31</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/02/13/Hibernate学习笔记（一）/" title="Hibernate学习笔记（一）">http://yoursite.com/2017/02/13/Hibernate学习笔记（一）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/02/13/Hibernate学习笔记（一）/　　作者: Chillax" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+
+
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/13/矩阵快速幂的JAVA实现/">矩阵快速幂的JAVA实现</a>
-    </h1>
-  
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/02/13/Hibernate学习笔记（二）/">
+                    Hibernate学习笔记（二）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/02/13/矩阵快速幂的JAVA实现/">
+                    矩阵快速幂的JAVA实现
+                </a>
+            </div>
+        
+    </nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h1><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p><strong>给定一个n*n的矩阵，求该矩阵的k次幂，即P^k。</strong></p>
-<p><strong>如何快速的算出一个矩阵的N次幂呢，举个例子，比如A^19  =&gt; （A^16）*（A^2）*（A^1）显然采取这样的方式计算时因子数将是log(n)级别的(原来的因子数是n)，不仅这样，因子间也是存在某种联系的。<br>比如A^4能通过(A^2)*(A^2)得到，A^8又能通过(A^4)*(A^4)得到，这点也充分利用了现有的结果作为有利条件。<br>下面举个例子进行说明：现在要求A^156,而156(10)=10011100(2) 也就有A^156=&gt;(A^4)*(A^8)*(A^16)*(A^128)  考虑到因子间的联系，我们从二进制10011100中的最右端开始计算到最左端。</strong></p>
-<p>以下代码就是其实现方式：<br><code></code></p>
-<pre><code>public class MatrixMulti {
-
-    public static long[][] mut(int k,int n,long[][] A){
-        long [][] res = new long[n][n];
-        for(int i = 0 ; i &lt; res.length ;i++){
-            for(int j = 0 ; j&lt; res[i].length ;j++){
-                if(i==j){
-                    res[i][j] = 1;
-                }else{
-                    res[i][j] = 0;
-                }
-            }
-        }
-        while(k!=0){
-            if((k&amp;1)==1) res = f(res,A);
-            k&gt;&gt;=1;
-            A = f(A,A);
-        }
-        return res;
-    }
-    public static long[][] f(long[][] A,long[][] B){
-        long res[][] = new long[A.length][B.length];
-        for(int i = 0 ; i &lt; res.length ;i++){
-            for(int j = 0 ; j&lt; res[i].length ;j++){
-                for(int k = 0 ; k &lt; A[0].length ;k++){
-                    res[i][j] += A[i][k]*B[k][j];
-                }
-            }
-        }
-        return res;
-    }
-
-}
-</code></pre><p><br><strong>其中函数f(),是定义了矩阵的乘法运算，在矩阵中，单位矩阵就是相当于常数1，在函数mut（）中，最主要的就是while循环里的代码，运用了分治的思想，快速的计算矩阵的n次幂。好吧，矩阵快速幂的讲解就到这里吧。</strong> </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记，算法/">JAVA养成记，算法</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate入门"><span class="toc-number">1.</span> <span class="toc-text">Hibernate入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-搭建hibernate环境"><span class="toc-number">1.1.</span> <span class="toc-text">    搭建hibernate环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-创建实体类"><span class="toc-number">1.2.</span> <span class="toc-text">    创建实体类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-配置实体类和数据库表的对应关系"><span class="toc-number">1.3.</span> <span class="toc-text">    配置实体类和数据库表的对应关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-创建hibernate核心的配置文件"><span class="toc-number">1.4.</span> <span class="toc-text">    创建hibernate核心的配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-实现基本操作"><span class="toc-number">1.5.</span> <span class="toc-text">    实现基本操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate配置文件详解"><span class="toc-number">2.</span> <span class="toc-text">Hibernate配置文件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate映射配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">    hibernate映射配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate核心配置文件"><span class="toc-number">2.2.</span> <span class="toc-text">    hibernate核心配置文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate核心API"><span class="toc-number">3.</span> <span class="toc-text">Hibernate核心API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-Configuration"><span class="toc-number">3.1.</span> <span class="toc-text">    Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-SessionFactory"><span class="toc-number">3.2.</span> <span class="toc-text">    SessionFactory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-Session"><span class="toc-number">3.3.</span> <span class="toc-text">    Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-Transaction"><span class="toc-number">3.4.</span> <span class="toc-text">    Transaction</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Hibernate学习笔记（一）　| Chillax的个人博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
 
 
 
@@ -783,9 +617,54 @@ tx.rollback();
 
 
 
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/02/13/Hibernate学习笔记（一）/" data-title="Hibernate学习笔记（一）" data-url="http://yoursite.com/2017/02/13/Hibernate学习笔记（一）/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"347184068"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
 
-  
-  
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/02/13/Hibernate学习笔记（二）/" title="上一篇: Hibernate学习笔记（二）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/02/13/矩阵快速幂的JAVA实现/" title="下一篇: 矩阵快速幂的JAVA实现">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/13/Hibernate学习笔记（二）/">Hibernate学习笔记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/13/Hibernate学习笔记（一）/">Hibernate学习笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/13/矩阵快速幂的JAVA实现/">矩阵快速幂的JAVA实现</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
