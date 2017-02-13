@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="Hibernate学习笔记">
+<meta name="description" content="Hibernate学习笔记三">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hibernate学习笔记（二）">
-<meta property="og:url" content="http://yoursite.com/2017/02/13/Hibernate学习笔记（二）/index.html">
+<meta property="og:title" content="Hibernate学习笔记（三）">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/Hibernate学习笔记（三）/index.html">
 <meta property="og:site_name" content="Chillax的个人博客">
-<meta property="og:description" content="Hibernate学习笔记">
-<meta property="og:updated_time" content="2017-02-13T11:51:38.643Z">
+<meta property="og:description" content="Hibernate学习笔记三">
+<meta property="og:updated_time" content="2017-02-13T12:02:36.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hibernate学习笔记（二）">
-<meta name="twitter:description" content="Hibernate学习笔记">
+<meta name="twitter:title" content="Hibernate学习笔记（三）">
+<meta name="twitter:description" content="Hibernate学习笔记三">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hibernate学习笔记（二） | Chillax的个人博客</title>
+<title>Hibernate学习笔记（三） | Chillax的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -268,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Hibernate学习笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Hibernate学习笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/02/13/Hibernate学习笔记（二）/" class="article-date">
-      <time datetime="2017-02-13T11:26:10.000Z" itemprop="datePublished">2017-02-13</time>
+      <a href="/2017/02/13/Hibernate学习笔记（三）/" class="article-date">
+      <time datetime="2017-02-13T11:53:36.000Z" itemprop="datePublished">2017-02-13</time>
 </a>
 
 
@@ -287,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hibernate学习笔记（二）
+      Hibernate学习笔记（三）
     </h1>
   
 
@@ -308,103 +308,186 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |="" 首页摘要=""><br>Hibernate学习笔记<a id="more"></a></excerpt></p>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>Hibernate学习笔记三<a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h1 id="Hibernate学习笔记"><a href="#Hibernate学习笔记" class="headerlink" title="Hibernate学习笔记 "></a>Hibernate学习笔记 <br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-hibernate实体类编写规则"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate实体类编写规则" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate实体类编写规则"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate实体类编写规则</h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>实体类里面的属性是私有的</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>私有属性使用公开的set和get方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>要求实体类有属性作为唯一值</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>实体类属性建议不使用基本数据类型，建议使用包装类。具体应该考虑null值是否有意义，比如一个学生的分数为0，和他没有参加考试，没有参加考试可将值赋值为null，而分数为0，就是属性值，因此只有int的包装类Integer才能表示null值</strong><br><br></p>
+<h1 id="Hibernate学习笔记（一对多、多对多操作）"><a href="#Hibernate学习笔记（一对多、多对多操作）" class="headerlink" title="Hibernate学习笔记（一对多、多对多操作）"></a>Hibernate学习笔记（一对多、多对多操作）<br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-hibernate一对多映射配置"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate一对多映射配置" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate一对多映射配置"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate一对多映射配置</h2><blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>首先创建两个实体类，我便以客户与联系人为例子说明</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>两个实体类之间要相互的表示</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>在客户实体类里面有多个联系人</strong><br><code></code></p>
 </blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate主键生成策略"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate主键生成策略" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate主键生成策略"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate主键生成策略<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>hibernate要求实体类有一个唯一属性对应表的主键，主键的自动生成有不同策略</strong><br><code></code></p>
-</blockquote>
-<pre><code>&lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;
+<pre><code>//hibernate 中要求使用set集合来存储类似这种情况
+private Set&lt;LinkMan&gt; setLinkMan = new HashSet&lt;LinkMan&gt;();
 </code></pre><p></p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>class属性中有多个值</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>native：表示根据本地的数据库来选择主键的自动生长策略</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>uuid：hibernate会自动生成一个uuid作为主键，此时表里面的id类型应为String</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; <strong>常用的就是以上两类</strong><br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>一个联系人属于一个客户</strong><br><code></code></p>
 </blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate中实体类的三种状态"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate中实体类的三种状态" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate中实体类的三种状态"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate中实体类的三种状态<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>瞬时态：对象里面没有id值，对象与session没有关联。也叫自由态，只存在于内存中，而在数据库中没有相应数据。用new创建的对象，它没有持久化，没有处于Session中。</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>持久态：对象里面有id值，对象与session有关联。与session关联并且在数据库中有相应数据。已经持久化，加入到了Session缓存中。如通过hibernate语句保存的对象。</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>托管态：对象有id值，对象与session没有关系。持久化对象脱离了Session的对象。如Session缓存被清空的对象。<br>特点：已经持久化，但不在Session缓存中。</strong><br><br></p>
-</blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Hibernate的缓存"><a href="#nbsp-nbsp-nbsp-nbsp-Hibernate的缓存" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Hibernate的缓存"></a>&nbsp;&nbsp;&nbsp;&nbsp;Hibernate的缓存<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>Hibernate一级缓存</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>Hibernate的一级缓存默认打开</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>Hibernate的使用范围是session范围，从session创建到关闭</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>Hibernate的一级缓存中，存储数据必须持久态数据</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>Hibernate二级缓存</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>目前使用redis去替代</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>默认不打开，需要配置</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>二级缓存的范围是sessionFactory的范围</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>Hibernate一级缓存的执行过程</strong></p>
-<image src="http://ojx1jel9d.bkt.clouddn.com/Hibernate%288Y8OXJ_O%5D%7BL%7B%7B7W$_LEY5G.jpg" width="600px" height="200px">
-
-
-</image></blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate一级缓存特性"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate一级缓存特性" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate一级缓存特性"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate一级缓存特性<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>持久态自动更新数据库</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>原理图</strong></p>
-<image src="http://ojx1jel9d.bkt.clouddn.com/UC998MTE%29IL0HO6PA258@SM.jpg" width="600px" height="200px">
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp; <strong>当对象为持久态时，其实会存储到一级缓存和一个快照区，当修改后，会与修改之前的数据进行比较，只有修改的值与未修改前的值不同时才会进行数据库的修改，极大的提高了数据库操作的效率</strong></p>
-</image></blockquote>
-<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate绑定session"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate绑定session" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate绑定session"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate绑定session<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>session类似于jdbc的connection，通过ThreadLocal可以进行绑定</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>Hibernate会实现session与本地线程进行绑定</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>获取与本地线程session</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>在Hibernate的核心配置文件中配置</strong><br><code></code></p>
-</blockquote>
-<pre><code>&lt;property name=&quot;hibernate.current_session_context_class&quot;&gt;thread&lt;/property&gt;
+<pre><code>//表示联系人所属于的客户
+private Customer customer;
 </code></pre><p></p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>对用sessionFactory的getCurrentSession()方法</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>与本地线程绑定的session，关闭session资源会报错，那是因为它与线程绑定了，线程结束，那么session结束</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>映射文件里面配置一对多的关系</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>客户映射文件中表示所有联系人,使用set标签表示多个联系人，其中name属性填写的是一对多关系中多的一方集合的名字，即填写客户实体类里面客户set集合的名称,而里面的key标签是指名数据库表的外键名称，\<one -="" to-many="">标签是指明两个实体类的关系为一对多、class属性填写的是多的一方的实体类路径</one></strong><br><code></code></p>
 </blockquote>
-<h1 id="Hibernate的查询对象的简单使用"><a href="#Hibernate的查询对象的简单使用" class="headerlink" title="Hibernate的查询对象的简单使用"></a>Hibernate的查询对象的简单使用<br></h1><h2 id="nbsp-nbsp-nbsp-nbsp-Query对象"><a href="#nbsp-nbsp-nbsp-nbsp-Query对象" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Query对象"></a>&nbsp;&nbsp;&nbsp;&nbsp;Query对象<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>使用query对象不需要写sql语句，但是要写hql语句</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>sql语句是操作表和表字段，hql语句是操作实体类和属性</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>查询所有的hql语句 ‘from 实体类名称’</strong><br><code></code></p>
-</blockquote>
-<pre><code>Query query = session.createQuery(&quot;from User&quot;);
-List&lt;User&gt; list = query.list();
-for (User user : list) {
-    System.out.println(user);
-}
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-Criteria对象"><a href="#nbsp-nbsp-nbsp-nbsp-Criteria对象" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;Criteria对象"></a>&nbsp;&nbsp;&nbsp;&nbsp;Criteria对象<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>使用这个对象进行查询操作，不需要写语句，直接调用里面的API</strong><br><code></code></p>
-</blockquote>
-<pre><code>Criteria criteria = session.createCriteria(User.class);
-List&lt;User&gt; list = criteria.list();
-for (User user : list) {
-    System.out.println(user);
-}
-</code></pre><p></p>
-<h2 id="nbsp-nbsp-nbsp-nbsp-SQLQuery"><a href="#nbsp-nbsp-nbsp-nbsp-SQLQuery" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;SQLQuery"></a>&nbsp;&nbsp;&nbsp;&nbsp;SQLQuery<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>普通的sql语句查询</strong></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>应该注意这个时候默认返回的Lsit集合中，每一部分是数组</strong><br><code></code></p>
-</blockquote>
-<pre><code>SQLQuery sqlQuery = session.createSQLQuery(&quot;select * from t_user&quot;);
-List&lt;Object []&gt; list = sqlQuery.list();
-for (Object[] objects : list) {
-    System.out.println(Arrays.toString(objects));
-}
+<pre><code>&lt;!-- 在客户的映射文件中表示所有联系人 --&gt;
+&lt;set name=&quot;setLinkMan&quot;&gt;
+  &lt;!-- 一对多建表，有外键
+      Hibernate双向维护外键，两方都要配置
+      column属性值是外键名称
+  --&gt;
+    &lt;key column=&quot;clid&quot;&gt;&lt;/key&gt;
+    &lt;!-- 客户所有的联系人，class里面写联系人实体类全路径 --&gt;
+    &lt;one-to-many class=&quot;entity.LinkMan&quot;/&gt;
+&lt;/set&gt;
 </code></pre><p></p>
 <blockquote>
-<p> &nbsp;&nbsp;&nbsp;&nbsp;3. <strong>设置返回list对象每一部分的类型</strong><br><code></code></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>在联系人实体类里面表示所属的客户,同样，\<many-to-one>是指明两个实体类的关系，其中class指明一的那一方实体类的全路径，而column是需要填写外键的名称，也就是之前在客户实体类配置文件里填写的外键</many-to-one></strong><br><code></code></p>
 </blockquote>
-<pre><code>SQLQuery sqlQuery = session.createSQLQuery(&quot;select * from t_user&quot;);
-//设置数据返回时封装到那一个实体类
-sqlQuery.addEntity(User.class);
-List&lt;Object []&gt; list = sqlQuery.list();
-for (Object[] objects : list) {
-  System.out.println(Arrays.toString(objects));
-}
+<pre><code>&lt;!-- 联系人所属的客户 --&gt;
+&lt;many-to-one name=&quot;customer&quot; class=&quot;entity.Customer&quot; column=&quot;clid&quot;&gt;&lt;/many-to-one&gt;
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>在核心配置文件中将两个映射文件引入</strong> </p>
+</blockquote>
+<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate一对多级联操作"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate一对多级联操作" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate一对多级联操作"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate一对多级联操作<br></h2><blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>级联保存（例如：添加一个客户，为这个客户添加联系人）</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>复杂做法，需要在两个实体类之间相互表示关系，对两张表同时更新</strong><br><code></code></p>
+</blockquote>
+<pre><code>//创建客户的对象
+Customer customer = new Customer();
+customer.setCustName(&quot;it&quot;);
+customer.setCustLevel(&quot;vip&quot;);
+customer.setCustSource(&quot;net&quot;);
+customer.setCustPhone(&quot;110&quot;);
+customer.setCustMobile(&quot;999&quot;);
+//创建联系人对象
+LinkMan linkMan = new LinkMan();
+linkMan.setLkm_name(&quot;luck&quot;);
+linkMan.setLkm_gender(&quot;男&quot;);
+linkMan.setLkm_phone(&quot;121&quot;);
+//建立两个实体类之间的关系
+customer.getSetLinkMan().add(linkMan);
+linkMan.setCustomer(customer);
+//向数据库中存储
+session.save(linkMan);
+session.save(customer);  
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>简化做法，首先需要在多的一方的映射文件中配置，在其set标签里加一个属性，cascade属性，它的值有save-update、delete等，分别表示级联更新、级联删除，多个属性之间用逗号隔开如：“save-update，delete”。这时候只需要将联系人加入到客户里面、更新客户即可</strong><br><code></code></p>
+</blockquote>
+<pre><code>&lt;set name=&quot;setLinkMan&quot; cascade=&quot;save-update&quot;&gt;
+
+customer.getSetLinkMan().add(linkMan);
+session.save(customer);
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>级联删除（例如：删除一个客户，这个客户里面的所有联系人也要删除）</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>需要在配置文件里面配置，参照上文</strong><br><code></code></p>
+</blockquote>
+<pre><code>&lt;set name=&quot;setLinkMan&quot; cascade=&quot;save-update,delete&quot;&gt;
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>在代码中就可以直接删除客户了</strong><br><code></code></p>
+</blockquote>
+<pre><code>Customer customer = session.get(Customer.class, 1);
+session.delete(customer);`
+</code></pre><p></p>
+<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate中一对多的修改操作"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate中一对多的修改操作" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate中一对多的修改操作"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate中一对多的修改操作<br></h2><blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>直接修改会产生一个问题，需要配置一个属性inverse=”true”，因为Hibernate对外键是双向维护，会对外键进行两次更新，降低了效率，因此将inverter属性设置为true可以让一的一方放弃维护。</strong><br><code>    </code></p>
+</blockquote>
+<pre><code>Customer baidu = session.get(Customer.class, 4);
+LinkMan linkMan = session.get(LinkMan.class, 3);
+baidu.getSetLinkMan().add(linkMan);
+linkMan.setCustomer(baidu);
+</code></pre><p></p>
+<h2 id="nbsp-nbsp-nbsp-nbsp-hibernate的多对多操作（例-用户和角色）"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate的多对多操作（例-用户和角色）" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate的多对多操作（例:用户和角色）"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate的多对多操作（例:用户和角色）<br></h2><blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>多对多的映射配置</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>创建实体类，用户和角色</strong><br><code></code></p>
+</blockquote>
+<pre><code>User
+private Integer user_id;
+private String user_Name;
+private String user_password;
+Role
+private Integer role_id;
+private String role_name;
+private String role_memo;
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>一个用户表示多个角色</strong><br><code></code></p>
+</blockquote>
+<pre><code>private Set&lt;Role&gt; setRole = new HashSet&lt;Role&gt;();
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) <strong>一个角色有多个用户</strong><br><code></code></p>
+</blockquote>
+<pre><code>private Set&lt;User&gt; setUser = new HashSet&lt;User&gt;();
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) <strong>配置多对多关系，与一对多关系中多的一方配置相似</strong><br><code></code></p>
+</blockquote>
+<pre><code>角色的配置文件
+&lt;set name=&quot;setUser&quot; table=&quot;user_role&quot; cascade=&quot;save-update&quot;&gt;
+    &lt;!-- 当前映射文件，在第三张表中的外键名称 --&gt;
+    &lt;key column=&quot;roleid&quot;&gt;&lt;/key&gt;
+    &lt;!-- 
+        class属性：角色实体类全路径
+        column属性：角色在第三张表的外键名称
+    --&gt;
+    &lt;many-to-many class=&quot;entity.User&quot; column=&quot;userid&quot;&gt;&lt;/many-to-many&gt;
+&lt;/set&gt;
+</code></pre><p><br><code></code></p>
+<pre><code>用户的配置文件
+&lt;!-- 在用户里面表示所有的角色 
+        name属性:角色set集合的名称
+        table属性:第三张表的名称
+--&gt;
+&lt;set name=&quot;setRole&quot; table=&quot;user_role&quot; cascade=&quot;save-update&quot;&gt;
+    &lt;!-- 当前映射文件，在第三张表中的外键名称 --&gt;
+    &lt;key column=&quot;userid&quot;&gt;&lt;/key&gt;
+    &lt;!-- 
+        class属性：角色实体类全路径
+        column属性：角色在第三张表的外键名称
+     --&gt;
+    &lt;many-to-many class=&quot;entity.Role&quot; column=&quot;roleid&quot;&gt;&lt;/many-to-many&gt;
+&lt;/set&gt;
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) <strong>在核心配置文件导入映射文件</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2. <strong>多对多的级联保存</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>根据用户保存角色，在用户映射文件里面讲set标签里的cascade属性设置为save-update</strong><br><code></code></p>
+</blockquote>
+<pre><code>//建立用户
+ User user1 = new User();
+ User user2 = new User();
+ //建立角色
+ Role r1 = new Role();
+ Role r2 = new Role();
+ Role r3 = new Role();
+ //user1有r1\r2的角色
+ user1.getSetRole().add(r1);
+ user1.getSetRole().add(r2);
+ //user2有r2\r3的角色
+ user2.getSetRole().add(r2);
+ user2.getSetRole().add(r3);
+ //保存用户
+ session.save(user1);
+ session.save(user2);  
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3. <strong>多对多的级联删除一般不会去用，因为会导致用户与角色表的数据删除，因此不需要级联删除，只需要去维护第三张关系表就可以了</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>维护第三张表</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) <strong>让用户有某些角色，直接将用户和角色查出来，在用户的角色集合中添加即可</strong><br><code></code></p>
+</blockquote>
+<pre><code>User user = session.get(User.class, 3);
+Role role = session.get(Role.class,1);
+user.getSetRole().add(role);
+</code></pre><p></p>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) <strong>让用户没有某些角色，也是直接将用户和角色查出来，在用户的角色集合中删除即可</strong><br><code></code></p>
+</blockquote>
+<pre><code>User user = session.get(User.class, 3);
+Role role = session.get(Role.class,1);
+user.getSetRole().remove(role);
 </code></pre><p></p>
 
       
@@ -414,13 +497,13 @@ for (Object[] objects : list) {
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/02/13/Hibernate学习笔记（二）/">Hibernate学习笔记（二）</a></p>
+        <p><span>本文标题:</span><a href="/2017/02/13/Hibernate学习笔记（三）/">Hibernate学习笔记（三）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Chillax</a></p>
-        <p><span>发布时间:</span>2017-02-13, 19:26:10</p>
-        <p><span>最后更新:</span>2017-02-13, 19:51:38</p>
+        <p><span>发布时间:</span>2017-02-13, 19:53:36</p>
+        <p><span>最后更新:</span>2017-02-13, 20:02:36</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/02/13/Hibernate学习笔记（二）/" title="Hibernate学习笔记（二）">http://yoursite.com/2017/02/13/Hibernate学习笔记（二）/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/02/13/Hibernate学习笔记（二）/　　作者: Chillax" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/02/13/Hibernate学习笔记（三）/" title="Hibernate学习笔记（三）">http://yoursite.com/2017/02/13/Hibernate学习笔记（三）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/02/13/Hibernate学习笔记（三）/　　作者: Chillax" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -432,16 +515,10 @@ for (Object[] objects : list) {
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/02/13/Hibernate学习笔记（三）/">
-                    Hibernate学习笔记（三）
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/02/13/Hibernate学习笔记（一）/">
-                    Hibernate学习笔记（一）
+                <a href="/2017/02/13/Hibernate学习笔记（二）/">
+                    Hibernate学习笔记（二）
                 </a>
             </div>
         
@@ -453,7 +530,7 @@ for (Object[] objects : list) {
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate学习笔记"><span class="toc-number">1.</span> <span class="toc-text">Hibernate学习笔记 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate实体类编写规则"><span class="toc-number">1.1.</span> <span class="toc-text">    hibernate实体类编写规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate主键生成策略"><span class="toc-number">1.2.</span> <span class="toc-text">    hibernate主键生成策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate中实体类的三种状态"><span class="toc-number">1.3.</span> <span class="toc-text">    hibernate中实体类的三种状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-Hibernate的缓存"><span class="toc-number">1.4.</span> <span class="toc-text">    Hibernate的缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate一级缓存特性"><span class="toc-number">1.5.</span> <span class="toc-text">    hibernate一级缓存特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate绑定session"><span class="toc-number">1.6.</span> <span class="toc-text">    hibernate绑定session</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate的查询对象的简单使用"><span class="toc-number">2.</span> <span class="toc-text">Hibernate的查询对象的简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-Query对象"><span class="toc-number">2.1.</span> <span class="toc-text">    Query对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-Criteria对象"><span class="toc-number">2.2.</span> <span class="toc-text">    Criteria对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-SQLQuery"><span class="toc-number">2.3.</span> <span class="toc-text">    SQLQuery</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate学习笔记（一对多、多对多操作）"><span class="toc-number">1.</span> <span class="toc-text">Hibernate学习笔记（一对多、多对多操作）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate一对多映射配置"><span class="toc-number">1.1.</span> <span class="toc-text">    hibernate一对多映射配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate一对多级联操作"><span class="toc-number">1.2.</span> <span class="toc-text">    hibernate一对多级联操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate中一对多的修改操作"><span class="toc-number">1.3.</span> <span class="toc-text">    hibernate中一对多的修改操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nbsp-nbsp-nbsp-nbsp-hibernate的多对多操作（例-用户和角色）"><span class="toc-number">1.4.</span> <span class="toc-text">    hibernate的多对多操作（例:用户和角色）</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -489,7 +566,7 @@ for (Object[] objects : list) {
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hibernate学习笔记（二）　| Chillax的个人博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Hibernate学习笔记（三）　| Chillax的个人博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -505,7 +582,7 @@ for (Object[] objects : list) {
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/02/13/Hibernate学习笔记（二）/" data-title="Hibernate学习笔记（二）" data-url="http://yoursite.com/2017/02/13/Hibernate学习笔记（二）/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/02/13/Hibernate学习笔记（三）/" data-title="Hibernate学习笔记（三）" data-url="http://yoursite.com/2017/02/13/Hibernate学习笔记（三）/"></div>
     <script>
         var duoshuoQuery = {short_name:"347184068"};
         var loadComment = function(){
@@ -528,15 +605,13 @@ for (Object[] objects : list) {
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/02/13/Hibernate学习笔记（三）/" title="上一篇: Hibernate学习笔记（三）">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/02/13/Hibernate学习笔记（一）/" title="下一篇: Hibernate学习笔记（一）">
+            <a href="/2017/02/13/Hibernate学习笔记（二）/" title="下一篇: Hibernate学习笔记（二）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
