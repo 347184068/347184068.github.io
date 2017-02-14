@@ -142,13 +142,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -191,7 +191,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
                     </div>
                 </section>
                 
@@ -270,9 +270,106 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-爬虫爬取的网易云热门歌单" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/14/爬虫爬取的网易云热门歌单/" class="article-date">
+      <time datetime="2017-02-14T12:12:41.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/爬虫爬取的网易云热门歌单/">爬虫爬取的网易云热门歌单</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>#介绍<br>&nbsp;&nbsp;&nbsp;从网上看到了一个java爬虫的教学，觉得挺有意思，就用来爬取一下网易云歌单，看一下什么歌单播放次数最多。利用Jsoup可以很轻松的对内容进行提取，有点类似于Jquery选择器的语法，利用HttpClient能够轻松的发送请求。然后就顺便把爬取的流行和民谣的歌单爬到了数据库，由于全部爬取数据量太大，所以只是爬取的前8页的歌单。<br><br><br><br>利用一下代码可以获取到网页内容的输入流。<br><code></code></p>
+<pre><code>HttpClient hc = new DefaultHttpClient();
+HttpGet hg = new HttpGet(url_str);
+HttpResponse response = hc.execute(hg);
+HttpEntity entity = response.getEntity();
+InputStream htm_in = entity.getContent();
+</code></pre><p><br>通过自己定义的方法，将输入流转换为字符串<br><code></code></p>
+<pre><code>public static String InputStream2String(InputStream in, String encoding) throws Exception {
+    StringBuffer out = new StringBuffer();
+    InputStreamReader inread = new InputStreamReader(in, encoding);
+
+    char[] b = new char[4096];
+    for (int n; (n = inread.read(b)) != -1;) {
+        out.append(new String(b, 0, n));
+    }
+
+    return out.toString();
+}
+</code></pre><p></p>
+<p>得到了内容后便可以用Jsoup解析，通过浏览器自带的开发者工具，分析选取哪一个&lt;div&gt;里面的内容<br><code></code></p>
+<pre><code>Document doc = Jsoup.parse(htm_str);
+Elements links = doc.select(&quot;div[class=g-bd]&quot;)
+.select(&quot;div[class=g-wrap p-pl f-pr]&quot;)
+.select(&quot;ul[class=m-cvrlst f-cb]&quot;)
+.select(&quot;div[class=u-cover u-cover-1&quot;);
+
+for (Element link : links) {
+    Elements lin = link.select(&quot;a&quot;);
+    String re_url = lin.attr(&quot;href&quot;);
+    String re_title = lin.attr(&quot;title&quot;);
+    System.out.print(re_title + &quot;       &quot;);
+    System.out.print(re_url + &quot;       &quot;);
+}
+</code></pre><p></p>
+<p>最后分享一下爬取的民谣和流行的歌单（都是播放排行前5的）。<br><br><br>流行<br></p>
+<table border="1" cellspacing="0"><br>     <tr><br>        <td>歌单名称</td><br>        <td>链接</td><br>        <td>热度</td><br>    </tr><br>    <tr><br>            <td>你知道思念一个人的滋味吗</td><br>            <td><a href="http://music.163.com/playlist?id=402924168" target="_blank" rel="external">点这里</a></td><br>            <td>16654854</td><br>    </tr><br>    <tr><br>            <td>一首歌让你回到中学时代</td><br>            <td><a href="http://music.163.com/playlist?id=375661355" target="_blank" rel="external">点这里</a></td><br>            <td>15056801</td><br>    </tr><br>    <tr><br>            <td>将回忆酿成烈酒入喉 从此不再挽留不再回头</td><br>            <td><a href="http://music.163.com/playlist?id=531321323" target="_blank" rel="external">点这里</a></td><br>            <td>13978220</td><br>    </tr><br>    <tr><br>            <td>华语｜那些温暖男声听起来总让人心疼</td><br>            <td><a href="http://music.163.com/playlist?id=550994494" target="_blank" rel="external">点这里</a></td><br>            <td>12357495</td><br>    </tr><br>    <tr><br>            <td>2016年度最热新歌TOP100</td><br>            <td><a href="http://music.163.com/playlist?id=554473977" target="_blank" rel="external">点这里</a></td><br>            <td>11242939</td><br>    </tr><br></table>
+
+<p>民谣<br></p>
+<table border="1" cellspacing="0"><br>     <tr><br>        <td>歌单名称</td><br>        <td>链接</td><br>        <td>热度</td><br>    </tr><br>    <tr><br>            <td>如果你想听民谣，可以从这些歌曲开始。</td><br>            <td><a href="http://music.163.com/playlist?id=129627424" target="_blank" rel="external">点这里</a></td><br>            <td>13987010</td><br>    </tr><br>    <tr><br>            <td>孤独旅人配民谣。</td><br>            <td><a href="http://music.163.com/playlist?id=378324005" target="_blank" rel="external">点这里</a></td><br>            <td>13297801</td><br>    </tr><br>    <tr><br>            <td>民谣是最安静的角落</td><br>            <td><a href="http://music.163.com/playlist?id=110759778" target="_blank" rel="external">点这里</a></td><br>            <td>12766316</td><br>    </tr><br>    <tr><br>            <td>你若听过他的歌，此生便有了挂念</td><br>            <td><a href="http://music.163.com/playlist?id=506453942" target="_blank" rel="external">点这里</a></td><br>            <td>8196015</td><br>    </tr><br>    <tr><br>            <td>华语女声丨若失意时 让这些歌给你一个拥抱</td><br>            <td><a href="http://music.163.com/playlist?id=566297970" target="_blank" rel="external">点这里</a></td><br>            <td>6662225</td><br>    </tr><br></table>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Hibernate学习笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -314,7 +411,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
     </div>
 
       
@@ -378,7 +475,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
     </div>
 
       
@@ -442,7 +539,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA养成记/">JAVA养成记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
     </div>
 
       
@@ -540,14 +637,14 @@
                 2016-2017 Chillax
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -556,7 +653,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -589,9 +686,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
