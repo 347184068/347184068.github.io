@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="回形嵌套"/>
+      <meta property="og:title" content="java特训第一课"/>
   
   <!--Open Graph Description-->
   
@@ -46,7 +46,7 @@
     </script>
   <!-- Title -->
   
-  <title>回形嵌套 - Chillax的个人博客</title>
+  <title>java特训第一课 - Chillax的个人博客</title>
 
 
   <link rel="shortcut icon" href="/images/avatar.png">
@@ -147,77 +147,27 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            回形嵌套
+            java特训第一课
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2017-02-26
+          2017-04-28
           </p>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p><excerpt in="" index="" |="" 首页摘要=""><br>观察这个图形，它是由一系列正方形的星号方框嵌套而成，在上边的例子中，最外方框的边长为11。<a id="more"></a></excerpt></p>
+          <p><excerpt in="" index="" |="" 首页摘要=""><br>面向对象设计中被公认的软件设计理念：内聚性、松耦合、零重复、封装、可测试性、可读性、单一职责、开闭原则<a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h1 id="回形嵌套"><a href="#回形嵌套" class="headerlink" title="回形嵌套"></a>回形嵌套</h1><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>观察这个图形，它是由一系列正方形的星号方框嵌套而成。<br>在上边的例子中，最外方框的边长为11。<br><br>本题的任务就是从标准输入获得一个整数n(1&lt;n&lt;100)<br>程序则生成嵌套着的回字型星号方框。其最外层方框的边长为n<br>    例如：</p>
-<pre><code>输入：
-5
-程序输出：
-*****
-*   *
-* * *
-*   *
-*****
-
-输入：6
-程序输出：
-******
-*    *
-* ** *
-* ** *
-*    *
-******
-</code></pre><p>思路：先写出最外层的打印方式，然后按照层数打印，利用递归，找好起始位置与结束条件<br><code></code></p>
-<pre><code>public class T7 {
-
-    static int n;
-    static char[][] map;
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        Scanner in = new Scanner(System.in);
-        n = in.nextInt();
-        map = new char[n][n];
-        fill(0);
-        show();
-    }
-    private static void show() {
-        // TODO Auto-generated method stub
-        for(char[] c : map){
-            for(char t : c){
-                System.out.print(t);
-            }
-            System.out.println();
-        }
-    }
-    private static void fill(int step) {
-        // TODO Auto-generated method stub
-        if(step&gt;=n){
-            return;
-        }
-        for(int i = step;i &lt; n -step;i++){
-            map[step][i] = &apos;*&apos;;
-            map[i][step] = &apos;*&apos;;
-            map[n-1-step][i] = &apos;*&apos;;
-            map[i][n-1-step] = &apos;*&apos;;
-        }
-
-        fill(step+2);
-
-        return;
-    }
-
-}
-</code></pre><p></p>
+<h1 id="软件健身操——九步迈向优秀软件设计"><a href="#软件健身操——九步迈向优秀软件设计" class="headerlink" title="软件健身操——九步迈向优秀软件设计"></a>软件健身操——九步迈向优秀软件设计</h1><h2 id="1-方法只使用一次缩进"><a href="#1-方法只使用一次缩进" class="headerlink" title="　　1. 方法只使用一次缩进"></a>　　1. 方法只使用一次缩进<br></h2><p>　　　　使得代码逻辑更加清晰，代码的可读性增强。越大的方法越缺少内聚性，通过编译器的抽取功能，可以对方法进行提炼，直到方法中只有一次缩进。</p>
+<h2 id="2-不使用else关键字"><a href="#2-不使用else关键字" class="headerlink" title="　　2. 不使用else关键字"></a>　　2. 不使用else关键字<br></h2><p>　　　　else语句会使得程序逻辑看起来更加复杂，形成更深层的逻辑关系，通常对于简单的else语句使用卫语句或提前返回来去掉else语句。</p>
+<h2 id="3-封装所有的原生类型和字符串"><a href="#3-封装所有的原生类型和字符串" class="headerlink" title="　　3. 封装所有的原生类型和字符串"></a>　　3. 封装所有的原生类型和字符串<br></h2><p>　　　　整数，只代表一个数量，并没有实际的意义，我们需要对整数进行封装，使它变得更有意义，让代码通俗易懂。</p>
+<h2 id="4-一行代码只有一个“-”运算符"><a href="#4-一行代码只有一个“-”运算符" class="headerlink" title="　　4. 一行代码只有一个“.”运算符"></a>　　4. 一行代码只有一个“.”运算符<br></h2><p>　　　　如果一行代码中有多个“.”运算符，那就说明很多类的职责就搞混了，假设我们去电影院付钱，我们自己掏钱包给收银员钱即可，如果抽象成多个“.”的情况，就是收银员拿着我们的钱包去付钱，这明显不符合常理。封装的含义就是不要让当前类跨入它不知道的类型中。而像java中字符串处理的一些类，他们通常使用的是bulider模式，即每一次“.”运算都会返回自身，因此不存在其他类的参与，所以并不会违反此条规定。</p>
+<h2 id="5-不要使用缩写"><a href="#5-不要使用缩写" class="headerlink" title="　　5. 不要使用缩写"></a>　　5. 不要使用缩写<br></h2><p>　　　　起名字时尽量使用全拼，提高代码的可读性，方便阅读</p>
+<h2 id="6-保持实体对象简单清晰"><a href="#6-保持实体对象简单清晰" class="headerlink" title="　　6. 保持实体对象简单清晰"></a>　　6. 保持实体对象简单清晰<br></h2><p>　　　　超过50 行的类所做的事情通常都不止一个。这会导致他们难以理解和重用。这意味着每个类的长度不能超过 50 行。每个包所包含的文件不超过 10 个。</p>
+<h2 id="7-任何类中的实例变量都不要超过两个"><a href="#7-任何类中的实例变量都不要超过两个" class="headerlink" title="　　7. 任何类中的实例变量都不要超过两个"></a>　　7. 任何类中的实例变量都不要超过两个<br></h2><p>　　　　将一个对象从拥有大量属性的状态，解构成分层次的，相互关联的多个对象，会直接产生一个更实用的对象模型。将一个复杂的大的对象，分解成多个简单的对象。可以将实例变量按照相关性分离在两个部分中；可以创建一个新的对象来封装两个已有的实例变量。</p>
+<h2 id="8-使用一流的集合"><a href="#8-使用一流的集合" class="headerlink" title="　　8. 使用一流的集合"></a>　　8. 使用一流的集合<br></h2><p>　　　　集合的概念应该是一类实例的集合。比如，定时器对象的集合——包括所有的定时器。我一般是放在定时器类中，然后使用static 来表示集合。看了这个方法要改一下了。任何包含集合的类都不能再包含其他的成员变量。每个集合都被封装在自己的类中。集合其实是一种应用广泛的原生类型。</p>
+<h2 id="9-不要使用任何Setter、Getter、Property"><a href="#9-不要使用任何Setter、Getter、Property" class="headerlink" title="　　9. 不要使用任何Setter、Getter、Property"></a>　　9. 不要使用任何Setter、Getter、Property<br></h2><p>　　　　要从询问，改变成命令。Geter/Setter/Proerty会对对象的封装性找出破坏。在严格封装的边界背后，真正的动机是迫使程序员在完成编码后，一定要为这段代码的行为找到一个合适的位置，确保它在对象模型中的唯一性。这样可以减少重复性的差错，以及在添加新特性的时候，可以在一个更合适的位置引入变化。</p>
 
         </div>
       </article>
@@ -227,13 +177,9 @@
 	<div class="container" >
            <ul class="pager">
     	     
-      	     <li class="previous">
-              <a href="/2017/04/28/java特训第一课/" rel="prev">下一篇</a>
-             </li>
-           
            
               <li class="next">
-              <a href="/2017/02/26/串的处理/" rel="prev">上一篇</a>
+              <a href="/2017/02/26/回形嵌套/" rel="prev">上一篇</a>
             </li>
            
           </ul>
@@ -257,7 +203,7 @@ var duoshuoQuery = {short_name:"347184068"};
 		 || document.getElementsByTagName('body')[0]).appendChild(ds);
 	})();
 	</script>
-    <div class="ds-thread" data-thread-key="post-回形嵌套" data-title="回形嵌套" data-url="http://yoursite.com/2017/02/26/回形嵌套/"></div>
+    <div class="ds-thread" data-thread-key="post-java特训第一课" data-title="java特训第一课" data-url="http://yoursite.com/2017/04/28/java特训第一课/"></div>
     <!-- 多说评论框 end -->
   
 </section>

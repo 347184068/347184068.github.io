@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="回形嵌套"/>
+      <meta property="og:title" content="Chillax的个人博客"/>
   
   <!--Open Graph Description-->
   
@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="Chillax的个人博客"/>
   <!--Type page-->
   
-      <meta property="og:type" content="article" />
+      <meta property="og:type" content="website" />
   
   <!--Page Cover-->
   
@@ -46,7 +46,7 @@
     </script>
   <!-- Title -->
   
-  <title>回形嵌套 - Chillax的个人博客</title>
+  <title>归档：2017/4 - Chillax的个人博客</title>
 
 
   <link rel="shortcut icon" href="/images/avatar.png">
@@ -139,133 +139,119 @@
 
 
   <!-- Main Content -->
-  <div class="content-area">
-  <div class="post">
-    <!-- Post Content -->
-    <div class="container">
-      <article>
-        <!-- Title date & tags -->
-        <div class="post-header">
-          <h1 class="entry-title">
-            回形嵌套
+  
+
+<!-- Main Content -->
+<div class="archive content-area">
+  <div class="container">
+    <h1 class="entry-title">2017/4</h1>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
+          1. group site.posts by year
+          2. sort posts-in-one-year by Month and Day
+        -->
+        
+
+        
+          <h2 class="year">2017</h2>
+          <ul class="list">
             
-          </h1>
-         
-        </div>
-         <p class="a-posted-on">
-          2017-02-26
-          </p>
-        <!-- Post Main Content -->
-        <div class="entry-content">
-          <p><excerpt in="" index="" |="" 首页摘要=""><br>观察这个图形，它是由一系列正方形的星号方框嵌套而成，在上边的例子中，最外方框的边长为11。<a id="more"></a></excerpt></p>
-<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h1 id="回形嵌套"><a href="#回形嵌套" class="headerlink" title="回形嵌套"></a>回形嵌套</h1><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>观察这个图形，它是由一系列正方形的星号方框嵌套而成。<br>在上边的例子中，最外方框的边长为11。<br><br>本题的任务就是从标准输入获得一个整数n(1&lt;n&lt;100)<br>程序则生成嵌套着的回字型星号方框。其最外层方框的边长为n<br>    例如：</p>
-<pre><code>输入：
-5
-程序输出：
-*****
-*   *
-* * *
-*   *
-*****
+  <li>
+    <span class="date">
+      2017-04-28
+    </span>
+    <a href="/2017/04/28/java特训第一课/" class="title">
+      java特训第一课
+    </a>
+  </li>
 
-输入：6
-程序输出：
-******
-*    *
-* ** *
-* ** *
-*    *
-******
-</code></pre><p>思路：先写出最外层的打印方式，然后按照层数打印，利用递归，找好起始位置与结束条件<br><code></code></p>
-<pre><code>public class T7 {
+  <li>
+    <span class="date">
+      2017-02-26
+    </span>
+    <a href="/2017/02/26/黑洞数/" class="title">
+      黑洞数
+    </a>
+  </li>
 
-    static int n;
-    static char[][] map;
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        Scanner in = new Scanner(System.in);
-        n = in.nextInt();
-        map = new char[n][n];
-        fill(0);
-        show();
-    }
-    private static void show() {
-        // TODO Auto-generated method stub
-        for(char[] c : map){
-            for(char t : c){
-                System.out.print(t);
-            }
-            System.out.println();
-        }
-    }
-    private static void fill(int step) {
-        // TODO Auto-generated method stub
-        if(step&gt;=n){
-            return;
-        }
-        for(int i = step;i &lt; n -step;i++){
-            map[step][i] = &apos;*&apos;;
-            map[i][step] = &apos;*&apos;;
-            map[n-1-step][i] = &apos;*&apos;;
-            map[i][n-1-step] = &apos;*&apos;;
-        }
+  <li>
+    <span class="date">
+      2017-02-26
+    </span>
+    <a href="/2017/02/26/串的处理/" class="title">
+      串的处理
+    </a>
+  </li>
 
-        fill(step+2);
+  <li>
+    <span class="date">
+      2017-02-26
+    </span>
+    <a href="/2017/02/26/回形嵌套/" class="title">
+      回形嵌套
+    </a>
+  </li>
 
-        return;
-    }
+  <li>
+    <span class="date">
+      2017-02-26
+    </span>
+    <a href="/2017/02/26/Excel地址转换/" class="title">
+      Excel地址转换
+    </a>
+  </li>
 
-}
-</code></pre><p></p>
+  <li>
+    <span class="date">
+      2017-02-14
+    </span>
+    <a href="/2017/02/14/爬虫爬取的网易云热门歌单/" class="title">
+      爬虫爬取的网易云热门歌单
+    </a>
+  </li>
 
-        </div>
-      </article>
-    </div>
-    <!-- Pre or Next -->
-    
-	<div class="container" >
-           <ul class="pager">
-    	     
-      	     <li class="previous">
-              <a href="/2017/04/28/java特训第一课/" rel="prev">下一篇</a>
-             </li>
-           
-           
-              <li class="next">
-              <a href="/2017/02/26/串的处理/" rel="prev">上一篇</a>
-            </li>
-           
+  <li>
+    <span class="date">
+      2017-02-13
+    </span>
+    <a href="/2017/02/13/矩阵快速幂的JAVA实现/" class="title">
+      矩阵快速幂的JAVA实现
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-02-13
+    </span>
+    <a href="/2017/02/13/Hibernate学习笔记（二）/" class="title">
+      Hibernate学习笔记（二）
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-02-13
+    </span>
+    <a href="/2017/02/13/Hibernate学习笔记（一）/" class="title">
+      Hibernate学习笔记（一）
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-02-13
+    </span>
+    <a href="/2017/02/13/Hibernate学习笔记（三）/" class="title">
+      Hibernate学习笔记（三）
+    </a>
+  </li>
+
+
           </ul>
-       </div>
-　　　　<!-- Comments -->
-    <div class="container">
-      
-<section id="comment">
-  <!-- <h1 class="title">留言</h1> -->
-
-  
-    <!-- 多说评论框 start -->
-        <script type="text/javascript">
-var duoshuoQuery = {short_name:"347184068"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-    <div class="ds-thread" data-thread-key="post-回形嵌套" data-title="回形嵌套" data-url="http://yoursite.com/2017/02/26/回形嵌套/"></div>
-    <!-- 多说评论框 end -->
-  
-</section>
-
-
+        
+      </div>
     </div>
-   
-　　　　
   </div>
 </div>
 
