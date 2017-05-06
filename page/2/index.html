@@ -46,7 +46,7 @@
     </script>
   <!-- Title -->
   
-  <title>归档：2017 - Chillax的个人博客</title>
+  <title>Chillax的个人博客 - 江山如画不及你窈窕如花，绝代风华落笔念他淘尽风沙</title>
 
 
   <link rel="shortcut icon" href="/images/avatar.png">
@@ -139,129 +139,107 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">2017</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2017</h2>
-          <ul class="list">
-            
-  <li>
-    <span class="date">
-      2017-05-06
-    </span>
-    <a href="/2017/05/06/java特训第二课/" class="title">
-      java特训第二课
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-04-28
-    </span>
-    <a href="/2017/04/28/java特训第一课/" class="title">
-      java特训第一课
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-26
-    </span>
-    <a href="/2017/02/26/回形嵌套/" class="title">
-      回形嵌套
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-26
-    </span>
-    <a href="/2017/02/26/黑洞数/" class="title">
-      黑洞数
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-26
-    </span>
-    <a href="/2017/02/26/串的处理/" class="title">
-      串的处理
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-26
-    </span>
-    <a href="/2017/02/26/Excel地址转换/" class="title">
-      Excel地址转换
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-14
-    </span>
-    <a href="/2017/02/14/爬虫爬取的网易云热门歌单/" class="title">
-      爬虫爬取的网易云热门歌单
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-13
-    </span>
-    <a href="/2017/02/13/矩阵快速幂的JAVA实现/" class="title">
-      矩阵快速幂的JAVA实现
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-13
-    </span>
-    <a href="/2017/02/13/Hibernate学习笔记（二）/" class="title">
-      Hibernate学习笔记（二）
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-13
-    </span>
-    <a href="/2017/02/13/Hibernate学习笔记（三）/" class="title">
-      Hibernate学习笔记（三）
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-13
-    </span>
-    <a href="/2017/02/13/Hibernate学习笔记（一）/" class="title">
-      Hibernate学习笔记（一）
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+  <div class="site-content home">
+      <div class="content-header" style="background: url(/images/cover.png) no-repeat bottom;">
+        <div class="headline">
+            <a href="#" class="demo">
+                <div class="img" style="background-image:url(/images/avatar.png)"></div>
+                <div class="cover_mask">
+                    <div class="info">
+                        <span>欢迎来到我的博客</br>by:chillax</span>
+                    </div>
+                </div>
+                <div class="border"></div>
+            </a>
+            <h1 id="Hotnews"></h1>
+            <script type="application/javascript">
+               var content = "江山如画不及你窈窕如花，绝代风华落笔念他淘尽风沙";
+               var i = 0;
+               function show(){
+                   var str  = content.substr(0,i);
+                   Hotnews.innerHTML = str + "_";
+                   i++;
+                   if (i>content.length) i=0;
+                   setTimeout("show()",600);
+               }
+               window.onload = show();
+               </script>
+            <div class="header-link">
+              
+                
+                  <a href="https://github.com/347184068" class="icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                
+                  <a href="http://weibo.com/xuyunxuan" class="icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
+                
+                  <a href="https://twitter.com" class="icon-twitter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                
+                  <a href="https://facebook.com" class="icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                
+              
+            </div>
+        </div>
     </div>
-  </div>
+  <main class="content-area">
+    
+        <div class="article">
+          <div class="container">
+  <article class="post">
+    <h1 class="entry-title">
+      <a href="/2017/02/13/矩阵快速幂的JAVA实现/" rel="bookmark">
+        矩阵快速幂的JAVA实现  
+      </a>
+    </h1>
+    
+    <div class="entry-content">
+      <p>
+        <p><Excerpt in index | 首页摘要><br>给定一个n*n的矩阵，求该矩阵的k次幂，即P^k。
+      </p>
+    </div>
+    <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/13/矩阵快速幂的JAVA实现/" rel="contents">
+              阅读全文 »
+            </a>
+    </div>
+    <p class="posted-on">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    	2017-02-13
+    </p>
+    <div class="tags-links">
+      <i class="fa fa-tags" aria-hidden="true"></i>
+      
+      <a href="/tags/JAVA养成记/" rel="tag">
+        JAVA养成记
+      </a>
+      
+      <a href="/tags/算法/" rel="tag">
+        算法
+      </a>
+      
+    </div>
+    
+  </article>
+</div>
+
+        </div> 
+    
+
+    
+<div class="container" >
+  <ul class="pager">
+    
+      <li class="previous">
+        <a href="/">
+          下一页
+        </a>
+      </li>
+    
+    
+  </ul>
+</div>
+
+
+  </main>
+
 </div>
 
 
