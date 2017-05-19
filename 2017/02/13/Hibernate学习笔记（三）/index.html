@@ -195,7 +195,7 @@ private Customer customer;
 &lt;many-to-one name=&quot;customer&quot; class=&quot;entity.Customer&quot; column=&quot;clid&quot;&gt;&lt;/many-to-one&gt;
 </code></pre><p></p>
 <blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>在核心配置文件中将两个映射文件引入</strong> </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;4. <strong>在核心配置文件中将两个映射文件引入</strong></p>
 </blockquote>
 <h2 id="nbsp-nbsp-nbsp-nbsp-hibernate一对多级联操作"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate一对多级联操作" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate一对多级联操作"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate一对多级联操作<br></h2><blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>级联保存（例如：添加一个客户，为这个客户添加联系人）</strong></p>
@@ -241,7 +241,7 @@ session.save(customer);
 session.delete(customer);`
 </code></pre><p></p>
 <h2 id="nbsp-nbsp-nbsp-nbsp-hibernate中一对多的修改操作"><a href="#nbsp-nbsp-nbsp-nbsp-hibernate中一对多的修改操作" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;hibernate中一对多的修改操作"></a>&nbsp;&nbsp;&nbsp;&nbsp;hibernate中一对多的修改操作<br></h2><blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>直接修改会产生一个问题，需要配置一个属性inverse=”true”，因为Hibernate对外键是双向维护，会对外键进行两次更新，降低了效率，因此将inverter属性设置为true可以让一的一方放弃维护。</strong><br><code>    </code></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1. <strong>直接修改会产生一个问题，需要配置一个属性inverse=”true”，因为Hibernate对外键是双向维护，会对外键进行两次更新，降低了效率，因此将inverter属性设置为true可以让一的一方放弃维护。</strong><br><code></code></p>
 </blockquote>
 <pre><code>Customer baidu = session.get(Customer.class, 4);
 LinkMan linkMan = session.get(LinkMan.class, 3);
@@ -278,7 +278,7 @@ private String role_memo;
 &lt;set name=&quot;setUser&quot; table=&quot;user_role&quot; cascade=&quot;save-update&quot;&gt;
     &lt;!-- 当前映射文件，在第三张表中的外键名称 --&gt;
     &lt;key column=&quot;roleid&quot;&gt;&lt;/key&gt;
-    &lt;!-- 
+    &lt;!--
         class属性：角色实体类全路径
         column属性：角色在第三张表的外键名称
     --&gt;
@@ -286,14 +286,14 @@ private String role_memo;
 &lt;/set&gt;
 </code></pre><p><br><code></code></p>
 <pre><code>用户的配置文件
-&lt;!-- 在用户里面表示所有的角色 
+&lt;!-- 在用户里面表示所有的角色
         name属性:角色set集合的名称
         table属性:第三张表的名称
 --&gt;
 &lt;set name=&quot;setRole&quot; table=&quot;user_role&quot; cascade=&quot;save-update&quot;&gt;
     &lt;!-- 当前映射文件，在第三张表中的外键名称 --&gt;
     &lt;key column=&quot;userid&quot;&gt;&lt;/key&gt;
-    &lt;!-- 
+    &lt;!--
         class属性：角色实体类全路径
         column属性：角色在第三张表的外键名称
      --&gt;
